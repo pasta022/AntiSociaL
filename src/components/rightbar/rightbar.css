@@ -1,3 +1,93 @@
 .rightbarContainer{
     flex: 3.5;
 }
+
+.rightbarWrapper{
+    padding: 20px 20px 0 0;
+}
+
+.birthdayContainer{
+    display: flex;
+    align-items: center;
+}
+
+.birthdayImg{
+    width: 45px;
+    height: 45px;
+    margin-right: 10px;
+}
+
+.birthdayText{
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.adContainer{
+    margin: 30px 0;
+}
+
+.adImg{
+    width: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.adTextContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.adText{
+    font-weight: 100;
+    text-align: center;
+    font-size: 15px;
+}
+
+.adIcon{
+    cursor: pointer;
+}
+
+h4{
+    margin-bottom: 10px;
+}
+
+.onlineFriendsList{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.onlineFriendListItem{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.rightbarFriendProfilePictureContainer{
+    margin-right: 10px;
+    position: relative;
+}
+
+.rightbarFriendProfilePicture{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.rightbarFriendOnline{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: limegreen;
+    position: absolute;
+    top: -2px;
+    right: 0;
+    border: 2px solid white;
+}
+
+.onlineFriendUserName{
+    font-weight: 500;
+}

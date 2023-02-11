@@ -26,7 +26,7 @@ const Post = () => {
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat
           </span>
-          <img src="/assets/posts/1.jpeg" alt="" className="postImg" />
+          <img src="/assets/posts/1.jpg" alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
