@@ -10,6 +10,8 @@ import {
   School,
   Work,
 } from "@mui/icons-material";
+import { Users } from "../../dummyData";
+import CloseFriends from "../closeFriends/closeFriends";
 
 const Leftbar = () => {
   return (
@@ -56,62 +58,9 @@ const Leftbar = () => {
         <button className="leftbarButton">Show More</button>
         <hr className="leftbarHr" />
         <ul className="leftbarFriendList">
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
-          <li className="leftbarFriendListItem">
-            <img
-              src="/assets/person/1.jpeg"
-              alt="avi"
-              className="leftbarFriendProfilePicture"
-            />
-            <span className="leftbarFriendName">Jane Doe</span>
-          </li>
+          {Users.map((u) => (
+            <CloseFriends key={u.id} user={u} />
+          ))}
         </ul>
       </div>
     </div>

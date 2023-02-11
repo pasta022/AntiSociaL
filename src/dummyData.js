@@ -54,7 +54,7 @@ export const Users = [
 export const Posts = [
     {
         id: 1,
-        desc: 'BreakFast is the most important meal of the day',
+        desc: 'Breakfast is the most important meal of the day',
         photo: '/assets/posts/1.jpg',
         date: '5M',
         userId: 1,
@@ -96,5 +96,32 @@ export const Posts = [
         userId: 5,
         likes: 37,
         comments: 25
-    }
+    },
+    {
+        id: 6,
+        desc: '',
+        photo: '/assets/posts/6.jpg',
+        date: '1W',
+        userId: 6,
+        likes: 3,
+        comments: 5
+    },
+    {
+        id: 7,
+        desc: 'Lady Bug on Plant. #so cute',
+        photo: '/assets/posts/7.jpg',
+        date: '1W',
+        userId: 7,
+        likes: 140,
+        comments: 34
+    },
+    {
+        id: 8,
+        desc: '',
+        photo: '/assets/posts/8.jpg',
+        date: '3W',
+        userId: 8,
+        likes: 45,
+        comments: 19
+    },
 ]
