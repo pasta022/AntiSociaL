@@ -3,10 +3,10 @@ import { Users } from "../../dummyData";
 import Online from "../online/online";
 import "./rightbar.css";
 
-const Rightbar = () => {
-  return (
-    <div className="rightbarContainer">
-      <div className="rightbarWrapper">
+const Rightbar = ({ profile }) => {
+  const HomeRightBar = () => {
+    return (
+      <>
         <div className="birthdayContainer">
           <img src="/assets/birthday.jpg" alt="" className="birthdayImg" />
           <span className="birthdayText">
@@ -26,6 +26,37 @@ const Rightbar = () => {
             <Online key={u.id} user={u} />
           ))}
         </ul>
+      </>
+    );
+  };
+
+  const ProfileRightBar = () => {
+    return (
+      <>
+        <h4 className="rightBarTitle">User Information</h4>
+        <div className="rightBarInfo">
+          <div className="rightbarInfoItem">
+            <span className="rightBarInfoKey">City: </span>
+            <span className="rightBarInfoValue">New York</span>
+          </div>
+          <div className="rightbarInfoItem">
+            <span className="rightBarInfoKey">From: </span>
+            <span className="rightBarInfoValue">Barcelona</span>
+          </div>
+          <div className="rightbarInfoItem">
+            <span className="rightBarInfoKey">Relationship: </span>
+            <span className="rightBarInfoValue">Complicated</span>
+          </div>
+        </div>
+        h4.userFriends
+      </>
+    );
+  };
+
+  return (
+    <div className="rightbarContainer">
+      <div className="rightbarWrapper">
+        <ProfileRightBar />
       </div>
     </div>
   );
