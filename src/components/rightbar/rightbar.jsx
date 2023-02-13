@@ -33,22 +33,48 @@ const Rightbar = ({ profile }) => {
   const ProfileRightBar = () => {
     return (
       <>
-        <h4 className="rightBarTitle">User Information</h4>
-        <div className="rightBarInfo">
+        <h4 className="rightbarTitle">User Information</h4>
+        <div className="rightbarInfo">
           <div className="rightbarInfoItem">
-            <span className="rightBarInfoKey">City: </span>
-            <span className="rightBarInfoValue">New York</span>
+            <span className="rightbarInfoKey">City: </span>
+            <span className="rightbarInfoValue">New York</span>
           </div>
           <div className="rightbarInfoItem">
-            <span className="rightBarInfoKey">From: </span>
-            <span className="rightBarInfoValue">Barcelona</span>
+            <span className="rightbarInfoKey">From: </span>
+            <span className="rightbarInfoValue">Barcelona</span>
           </div>
           <div className="rightbarInfoItem">
-            <span className="rightBarInfoKey">Relationship: </span>
-            <span className="rightBarInfoValue">Complicated</span>
+            <span className="rightbarInfoKey">Relationship: </span>
+            <span className="rightbarInfoValue">Complicated</span>
           </div>
         </div>
-        h4.userFriends
+        <h4 className="userFriends">User Friends</h4>
+        <div className="rightbarFollowings">
+          <div className="rightbarFollowing">
+            <img src="/assets/person/1.jpeg" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img src="/assets/person/2.png" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img src="/assets/person/3.jpeg" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img src="/assets/person/4.jpeg" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img src="/assets/person/5.jpeg" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+          <div className="rightbarFollowing">
+            <img src="/assets/person/6.jpeg" alt="" className="rightbarFollowingImg" />
+            <span className="rightbarFollowingName">Johnny Carter</span>
+          </div>
+        </div>
       </>
     );
   };
