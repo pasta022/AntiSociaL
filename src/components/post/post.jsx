@@ -6,6 +6,7 @@ import "./post.css";
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes);
   const [isLiked, setIsLiked] = useState(false);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -17,8 +18,8 @@ const Post = ({ post }) => {
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              src={Users.filter(u => u.id === post.id)[0].profilePicture}
-              alt="avi"
+              src={PF+Users.filter(u => u.id === post.id)[0].profilePicture}
+              alt=""
               className="postProfilePicture"
             />
             <span className="postUserName">{ Users.filter(u => u.id === post.id)[0].username}</span>
@@ -30,7 +31,7 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={post.photo} alt="" className="postImg" />
+          <img src={PF+post.photo} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
