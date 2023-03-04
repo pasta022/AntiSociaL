@@ -1,29 +1,40 @@
 import { MoreVert } from "@mui/icons-material";
-import { useState } from "react";
-import { Users } from "../../dummyData";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { format } from "timeago.js";
 import "./post.css";
 
 const Post = ({ post }) => {
-  const [like, setLike] = useState(post.likes);
+  const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   }
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`users/${post.userId}`);
+      setUser(res.data);
+    };
+
+    fetchUser();
+  }, [post.userId]);
   return (
     <div className="postContainer">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              src={PF+Users.filter(u => u.id === post.id)[0].profilePicture}
+              src={user.profilePicture || PF+"person/10.png"}
               alt=""
               className="postProfilePicture"
             />
-            <span className="postUserName">{ Users.filter(u => u.id === post.id)[0].username}</span>
-            <span className="postTimeStamp">{post.date}</span>
+            <span className="postUserName">{ user.username}</span>
+            <span className="postTimeStamp">{format(post.createdAt) }</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -31,12 +42,12 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={PF+post.photo} alt="" className="postImg" />
+          <img src={PF+post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src="/assets/like.jpeg" alt="" className="postLikeIcon" onClick={handleLike}/>
-            <img src="/assets/love.jpg" alt="" className="postLikeIcon" onClick={handleLike}/>
+            <img src={PF+"like.jpeg"} alt="" className="postLikeIcon" onClick={handleLike}/>
+            <img src={PF+"love.jpg"} alt="" className="postLikeIcon" onClick={handleLike}/>
             <span className="postLikeCounter">
               {like} people liked it
             </span>

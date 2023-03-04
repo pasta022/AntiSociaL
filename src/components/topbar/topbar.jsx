@@ -5,11 +5,14 @@ import {
   Chat,
   Notifications,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 const TopBar = () => {
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <span className="topbarLogo">AntiSociaL</span>
+        <Link to= "/" style={{textDecoration: "none"}}>
+          <span className="topbarLogo">AntiSociaL</span>
+        </Link>
       </div>
       <div className="topbarCenter">
         <div className="searchBar">

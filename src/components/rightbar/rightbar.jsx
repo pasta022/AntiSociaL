@@ -20,7 +20,7 @@ const Rightbar = ({ profile }) => {
             <span className="adText">Sponsored Ad</span>
             <MoreVert className="adIcon" />
           </div>
-          <img src={PF+"/assets/ad.jpg"} alt="" className="adImg" />
+          <img src={PF+"ad.jpg"} alt="" className="adImg" />
         </div>
         <h4 className="rightbarOnlineFriends">Online Friends</h4>
         <ul className="onlineFriendsList">
