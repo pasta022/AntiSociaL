@@ -2,6 +2,7 @@ import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 import "./post.css";
 
 const Post = ({ post }) => {
@@ -13,11 +14,11 @@ const Post = ({ post }) => {
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-  }
+  };
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`);
+      const res = await axios.get(`/users/${post.userId}`);
       setUser(res.data);
     };
 
@@ -28,13 +29,15 @@ const Post = ({ post }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={user.profilePicture || PF+"person/10.png"}
-              alt=""
-              className="postProfilePicture"
-            />
-            <span className="postUserName">{ user.username}</span>
-            <span className="postTimeStamp">{format(post.createdAt) }</span>
+            <Link to={`profile/${user.username}`}>
+              <img
+                src={user.profilePicture || PF + "person/10.png"}
+                alt=""
+                className="postProfilePicture"
+              />
+            </Link>
+            <span className="postUserName">{user.username}</span>
+            <span className="postTimeStamp">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -42,15 +45,23 @@ const Post = ({ post }) => {
         </div>
         <div className="postCenter">
           <span className="postText">{post?.desc}</span>
-          <img src={PF+post.img} alt="" className="postImg" />
+          <img src={PF + post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <img src={PF+"like.jpeg"} alt="" className="postLikeIcon" onClick={handleLike}/>
-            <img src={PF+"love.jpg"} alt="" className="postLikeIcon" onClick={handleLike}/>
-            <span className="postLikeCounter">
-              {like} people liked it
-            </span>
+            <img
+              src={PF + "like.jpeg"}
+              alt=""
+              className="postLikeIcon"
+              onClick={handleLike}
+            />
+            <img
+              src={PF + "love.jpg"}
+              alt=""
+              className="postLikeIcon"
+              onClick={handleLike}
+            />
+            <span className="postLikeCounter">{like} people liked it</span>
           </div>
           <div className="postBottomRight">
             <div className="postCommentText">{post.comments} Comments</div>
