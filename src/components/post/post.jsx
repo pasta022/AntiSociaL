@@ -18,7 +18,7 @@ const Post = ({ post }) => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/users/${post.userId}`);
+      const res = await axios.get(`/users?userId=${post.userId}`);
       setUser(res.data);
     };
 
@@ -64,7 +64,7 @@ const Post = ({ post }) => {
             <span className="postLikeCounter">{like} people liked it</span>
           </div>
           <div className="postBottomRight">
-            <div className="postCommentText">{post.comments} Comments</div>
+            <div className="postCommentText">{post.comments.length} Comments</div>
           </div>
         </div>
       </div>
