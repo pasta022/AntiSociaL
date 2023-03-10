@@ -33,7 +33,7 @@
 }
 
 .loginBox{
-    height: 300px;
+    max-height: 300px;
     padding: 20px;
     background-color: white;
     border-radius: 10px;
@@ -67,6 +67,10 @@
 
 .loginButton:hover{
     background-color: rgb(131, 214, 131);
+}
+
+.loginButton:disabled{
+    cursor: not-allowed;
 }
 
 .loginForgotPassword{
@@ -111,4 +115,8 @@
 
 .loginRegisterButton:hover{
     background-color: #1775d3;
+}
+
+.loginRegisterButton:disabled{
+    cursor: not-allowed;
 }
