@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import "./login.css";
 import { loginCall } from '../../apiCalls'
 import { AuthContext } from '../../context/authContext'
@@ -17,7 +17,6 @@ const Login = () => {
     }, dispatch);
 
   }
-  console.log(user);
   
   return (
     <div className="login">
