@@ -14,8 +14,8 @@ function App() {
       <Routes>
         <Route exact path="/" element={user ? <Home /> : <Register />} />
         <Route path="/login" element={user ? <Navigate to="/"/> : <Login />} />
-        <Route path="/register" element={user ? <Navigate /> : <Register />} />
-        <Route path="/profile/:username" element={<Profile />} />
+        <Route path="/register" element={user ? <Navigate to="/"/> : <Register />} />
+        <Route path="/profile/:username" element={user ? <Profile /> : <Navigate to="/register"/>} />
       </Routes>
     </Router>
   );

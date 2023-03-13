@@ -36,7 +36,11 @@ const Profile = () => {
               />
               <img
                 className="profileUserImage"
-                src={user.profilePicture || PF + "person/10.png"}
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "/person/10.png"
+                }
                 alt=""
               />
             </div>

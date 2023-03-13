@@ -1,20 +1,21 @@
 import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import "./post.css";
+import { AuthContext } from "../../context/authContext";
 
 const Post = ({ post }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const { user: currentUser } = useContext(AuthContext);
 
-  const handleLike = () => {
-    setLike(isLiked ? like - 1 : like + 1);
-    setIsLiked(!isLiked);
-  };
+  useEffect(() => {
+    setIsLiked(post.likes.includes(currentUser._id));
+  }, [post.likes, currentUser._id]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -24,6 +25,18 @@ const Post = ({ post }) => {
 
     fetchUser();
   }, [post.userId]);
+
+  const handleLike = () => {
+    console.log(isLiked);
+    try {
+      axios.put(`posts/${post._id}/like`, { userId: currentUser._id });
+    } catch (error) {}
+    setLike(isLiked ? like - 1 : like + 1);
+    setIsLiked(!isLiked);
+    console.log(isLiked);
+
+  };
+  
   return (
     <div className="postContainer">
       <div className="postWrapper">
@@ -31,7 +44,11 @@ const Post = ({ post }) => {
           <div className="postTopLeft">
             <Link to={`profile/${user.username}`}>
               <img
-                src={user.profilePicture || PF + "person/10.png"}
+                src={
+                  user.profilePicture
+                    ? PF + user.profilePicture
+                    : PF + "/person/10.png"
+                }
                 alt=""
                 className="postProfilePicture"
               />
@@ -64,7 +81,9 @@ const Post = ({ post }) => {
             <span className="postLikeCounter">{like} people liked it</span>
           </div>
           <div className="postBottomRight">
-            <div className="postCommentText">{post.comments.length} Comments</div>
+            <div className="postCommentText">
+              {post.comments.length} Comments
+            </div>
           </div>
         </div>
       </div>

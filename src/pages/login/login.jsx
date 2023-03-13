@@ -1,23 +1,31 @@
 import { useContext, useRef } from "react";
 import "./login.css";
-import { loginCall } from '../../apiCalls'
-import { AuthContext } from '../../context/authContext'
+import { loginCall } from "../../apiCalls";
+import { AuthContext } from "../../context/authContext";
 import { CircularProgress } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const email = useRef();
   const password = useRef();
-  const {user, isFetching, error, dispatch} = useContext(AuthContext)
+  const { isFetching, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginCall({
-      email: email.current.value,
-      password: password.current.value
-    }, dispatch);
+    loginCall(
+      {
+        email: email.current.value,
+        password: password.current.value,
+      },
+      dispatch
+    );
+  };
 
-  }
-  
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -53,7 +61,11 @@ const Login = () => {
               <p className="loginForgotPassword">Forgot Password ?</p>
             </div>
             <hr />
-            <button className="loginRegisterButton" disabled={isFetching}>
+            <button
+              className="loginRegisterButton"
+              disabled={isFetching}
+              onClick={handleRegister}
+            >
               {isFetching ? (
                 <CircularProgress color="inherit" size={25} />
               ) : (

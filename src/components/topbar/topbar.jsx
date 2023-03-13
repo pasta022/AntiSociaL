@@ -6,11 +6,17 @@ import {
   Notifications,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
+
 const TopBar = () => {
+  const { user } = useContext(AuthContext);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
-        <Link to= "/" style={{textDecoration: "none"}}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <span className="topbarLogo">AntiSociaL</span>
         </Link>
       </div>
@@ -43,11 +49,17 @@ const TopBar = () => {
             <span className="topbarIconBadge">3</span>
           </div>
         </div>
-        <img
-          src="/assets/person/10.png"
-          alt="avi"
-          className="topbarProfilePicture"
-        />
+        <Link to={`/profile/${user.username}`}>
+          <img
+            src={
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "/person/10.png"
+            }
+            alt=""
+            className="topbarProfilePicture"
+          />
+        </Link>
       </div>
     </div>
   );

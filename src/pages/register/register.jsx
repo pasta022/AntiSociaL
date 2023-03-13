@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material"
 import axios from "axios";
 import "./register.css";
 
@@ -10,6 +11,7 @@ const Register = () => {
   const password = useRef();
   const passwordAgain = useRef();
   const [showDiv, setShowDiv] = useState(false);
+  const [fetching, setFetching] = useState(false);
   const navigate = useNavigate();
   
   const handleClick = async (e) => {
@@ -28,12 +30,17 @@ const Register = () => {
         password: password.current.value,
       };
       try {
+        setFetching(true);
         await axios.post('/auth/register', user);
         navigate('/login');
       } catch (error) {
         console.log(error);
       }
     }
+  }
+
+  const handleLogin = () => {
+    navigate("/login");
   }
 
   return (
@@ -75,12 +82,12 @@ const Register = () => {
               required
             />
             {showDiv && <p className="wrongPassword">Passwords don't match</p>}
-            <button className="loginButton" type="submit">Sign Up</button>
+            <button className="loginButton" type="submit">{fetching ? <CircularProgress color="inherit" size={25} /> : "Sign Up"}</button>
             <hr />
             <p>
               <span className="registerText">Already have an account ?</span>
             </p>
-            <button className="loginRegisterButton">Log in to Account</button>
+            <button className="loginRegisterButton" onClick={handleLogin}>Log in to Account</button>
           </form>
         </div>
       </div>
