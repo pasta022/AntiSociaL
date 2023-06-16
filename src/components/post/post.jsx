@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./post.css";
 import { AuthContext } from "../../context/authContext";
 
-const Post = ({ post }) => {
+const Post = ({ post, profile }) => {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
@@ -29,14 +29,13 @@ const Post = ({ post }) => {
   const handleLike = () => {
     console.log(isLiked);
     try {
-      axios.put(`posts/${post._id}/like`, { userId: currentUser._id });
+      axios.put(`/posts/${post._id}/like`, { userId: currentUser._id });
     } catch (error) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
     console.log(isLiked);
-
   };
-  
+
   return (
     <div className="postContainer">
       <div className="postWrapper">
