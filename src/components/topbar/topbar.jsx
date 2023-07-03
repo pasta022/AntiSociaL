@@ -5,13 +5,19 @@ import {
   Chat,
   Notifications,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 
 const TopBar = () => {
   const { user } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const navigate = useNavigate();
+
+  //chat icon function
+  const handleClick = () => {
+    navigate("/messenger");
+  };
 
   return (
     <div className="topbarContainer">
@@ -41,7 +47,7 @@ const TopBar = () => {
             <span className="topbarIconBadge">1</span>
           </div>
           <div className="topbarIconItems">
-            <Chat />
+            <Chat onClick={handleClick} />
             <span className="topbarIconBadge">2</span>
           </div>
           <div className="topbarIconItems">

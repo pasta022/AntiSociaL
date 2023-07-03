@@ -11,6 +11,7 @@ const Login = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  //validate user
   const handleSubmit = (e) => {
     e.preventDefault();
     loginCall(
@@ -22,6 +23,7 @@ const Login = () => {
     );
   };
 
+  //register button fuction
   const handleRegister = () => {
     navigate("/register");
   };

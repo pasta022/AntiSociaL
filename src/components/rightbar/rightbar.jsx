@@ -22,7 +22,7 @@ const Rightbar = ({ profile, user }) => {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axios.get(`/users/following/${user._id}`);
+        const friendList = await axios.get(`/users/following/${user?._id}`);
         setFriends(friendList.data);
       } catch (error) {
         console.log(error);

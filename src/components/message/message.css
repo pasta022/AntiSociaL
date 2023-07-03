@@ -22,6 +22,7 @@
     background-color: #92EF92;
     color: white;
     max-width: 300px;
+    font-size: 15px;
 }
 
 .messageBottom{
@@ -36,4 +37,8 @@
 .message.own .messageTopText{
     background-color: rgb(232, 232, 232);
     color: black;
+}
+
+.message.own .messageTopImg{
+    display: none;
 }

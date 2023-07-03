@@ -1,11 +1,10 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircularProgress } from "@mui/material"
+import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import "./register.css";
 
 const Register = () => {
-
   const email = useRef();
   const username = useRef();
   const password = useRef();
@@ -13,16 +12,15 @@ const Register = () => {
   const [showDiv, setShowDiv] = useState(false);
   const [fetching, setFetching] = useState(false);
   const navigate = useNavigate();
-  
+
+  //register user
   const handleClick = async (e) => {
     e.preventDefault();
-    console.log('clicked');
     if (passwordAgain.current.value !== password.current.value) {
       setShowDiv(true);
       password.current.value = "";
       passwordAgain.current.value = "";
-    } 
-    else {
+    } else {
       setShowDiv(false);
       const user = {
         username: username.current.value,
@@ -31,17 +29,17 @@ const Register = () => {
       };
       try {
         setFetching(true);
-        await axios.post('/auth/register', user);
-        navigate('/login');
+        await axios.post("/auth/register", user);
+        navigate("/login");
       } catch (error) {
         console.log(error);
       }
     }
-  }
+  };
 
   const handleLogin = () => {
     navigate("/login");
-  }
+  };
 
   return (
     <div className="login">
@@ -82,12 +80,20 @@ const Register = () => {
               required
             />
             {showDiv && <p className="wrongPassword">Passwords don't match</p>}
-            <button className="loginButton" type="submit">{fetching ? <CircularProgress color="inherit" size={25} /> : "Sign Up"}</button>
+            <button className="loginButton" type="submit">
+              {fetching ? (
+                <CircularProgress color="inherit" size={25} />
+              ) : (
+                "Sign Up"
+              )}
+            </button>
             <hr />
             <p>
               <span className="registerText">Already have an account ?</span>
             </p>
-            <button className="loginRegisterButton" onClick={handleLogin}>Log in to Account</button>
+            <button className="loginRegisterButton" onClick={handleLogin}>
+              Log in to Account
+            </button>
           </form>
         </div>
       </div>
