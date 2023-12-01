@@ -55,11 +55,11 @@ const Register = () => {
             Meet people you know and don't know
           </span>
         </div>
-        <div
+        <form
           className="flex flex-col items-center justify-center w-full px-5 md:flex-1"
           onSubmit={handleClick}
         >
-          <form className="flex flex-col justify-between w-full h-96">
+          <div className="flex flex-col justify-between w-full h-96">
             <input
               type="text"
               className="h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
@@ -95,7 +95,7 @@ const Register = () => {
               </p>
             )}
             <button
-              className="h-12 mt-4 text-lg font-medium border-none rounded-lg cursor-pointer bg-customPrimary text-textSecondary"
+              className="h-12 mt-4 text-lg font-medium border-none rounded-lg cursor-pointer bg-customPrimary text-textSecondary disabled:cursor-not-allowed"
               type="submit"
             >
               {fetching ? (
@@ -109,13 +109,13 @@ const Register = () => {
               <span className="font-light">Already have an account ?</span>
             </p>
             <button
-              className="h-12 text-lg font-medium border-none rounded-lg bg-[#1775ee] text-textSecondary cursor-pointer"
+              className="h-12 text-lg font-medium border-none rounded-lg bg-[#1775ee] text-textSecondary cursor-pointer disabled:cursor-not-allowed"
               onClick={handleLogin}
             >
               Log in to Account
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
