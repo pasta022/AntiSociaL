@@ -23,14 +23,14 @@ function App() {
           path="/register"
           element={user ? <Navigate to="/" /> : <Register />}
         />
-        <Route
+        {/* <Route
           path="/messenger"
           element={!user ? <Navigate to="/" /> : <Messenger />}
         />
         <Route
           path="/profile/:username"
           element={user ? <Profile /> : <Navigate to="/register" />}
-        />
+        /> */}
       </Routes>
     </Router>
   );

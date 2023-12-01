@@ -1,11 +1,11 @@
-.login{
+/* .login{
     width: 100vw;
     height: 100vh;
     background-color: #f0f2f5;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} 
 
 .loginWrapper{
     width: 70%;
@@ -92,4 +92,7 @@
 
 .loginRegisterButton:hover{
     background-color: #1775d3;
-}
+} */
+
+body{
+    color: #f0f2f5}
