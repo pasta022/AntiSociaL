@@ -35,7 +35,7 @@ const Login = () => {
           <h3 className="text-4xl font-extrabold text-center md:text-5xl text-customPrimary md:text-left md:mb-2">
             AntiSociaL
           </h3>
-          <span className="text-xl font-light text-center md:text-2xl md:text-left">
+          <span className="text-lg font-light text-center md:text-2xl md:text-left">
             Meet people you know and don't know
           </span>
         </div>
