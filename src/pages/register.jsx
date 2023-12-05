@@ -5,6 +5,7 @@ import axios from "axios";
 // import "./register.css";
 
 const Register = () => {
+  // component states
   const email = useRef();
   const username = useRef();
   const password = useRef();
@@ -13,9 +14,13 @@ const Register = () => {
   const [fetching, setFetching] = useState(false);
   const navigate = useNavigate();
 
+  // api endpoints
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
   //register user
   const handleClick = async (e) => {
     e.preventDefault();
+    // check password
     if (passwordAgain.current.value !== password.current.value) {
       setShowDiv(true);
       setTimeout(() => {
@@ -32,14 +37,16 @@ const Register = () => {
       };
       try {
         setFetching(true);
-        await axios.post("/auth/register", user);
+        await axios.post(`${baseUrl}/api/auth/register`, user);
         navigate("/login");
       } catch (error) {
         console.log(error);
+        setFetching(false);
       }
     }
   };
 
+  // navigate to login page
   const handleLogin = () => {
     navigate("/login");
   };
