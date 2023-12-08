@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/authContext";
-import "./share.css";
+// import "./share.css";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +16,7 @@ const Share = () => {
   const [file, setFile] = useState(null);
   const desc = useRef();
 
+  // upload/create post
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = {
@@ -46,9 +47,9 @@ const Share = () => {
   };
 
   return (
-    <div className="shareContainer">
-      <div className="shareWrapper">
-        <div className="shareTop">
+    <div className="w-full min-h-[140px] rounded-xl shadow-custom">
+      <div className="p-2">
+        <div className="flex items-center">
           <img
             src={
               user.profilePicture
@@ -56,26 +57,42 @@ const Share = () => {
                 : PF + "/person/10.png"
             }
             alt=""
-            className="shareProfilePicture"
+            className="object-cover w-12 h-12 mr-3 rounded-full"
           />
           <input
             placeholder={`What are you thinking ${user.username}?`}
-            className="shareTopInput"
+            className="w-4/5 h-6 border-none focus:outline-none"
             ref={desc}
           />
         </div>
-        <hr className="shareHr" />
+        <hr className="m-5" />
         {file && (
-          <div className="shareImgContainer">
-            <img src={URL.createObjectURL(file)} className="shareImg" alt="" />
-            <Cancel className="shareCancelImg" onClick={() => setFile(null)} />
+          <div className="px-5 pb-2.5 relative">
+            <img
+              src={URL.createObjectURL(file)}
+              className="object-cover w-full"
+              alt=""
+            />
+            <Cancel
+              className="absolute top-0 text-red-600 cursor-pointer right-5 opacity-70"
+              onClick={() => setFile(null)}
+            />
           </div>
         )}
-        <form className="shareBottom" onSubmit={handleSubmit}>
-          <div className="shareOptions">
-            <label htmlFor="file" className="shareOption">
-              <PermMedia htmlColor="tomato" className="shareOptionIcon" />
-              <span className="shareOptionText">Photo or Video</span>
+        <form
+          className="flex items-center justify-between"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex w-3/4">
+            <label
+              htmlFor="file"
+              className="flex items-center mr-2.5 cursor-pointer flex-1 justify-center"
+            >
+              <PermMedia
+                htmlColor="tomato"
+                sx={{ fontSize: "18px", marginRight: "3px" }}
+              />
+              <span className="text-[16px] font-medium">Media</span>
               <input
                 style={{
                   display: "none",
@@ -88,23 +105,32 @@ const Share = () => {
                 }}
               />
             </label>
-            <div className="shareOption">
-              <Label htmlColor="blue" className="shareOptionIcon" />
-              <span className="shareOptionText">Tag</span>
+            <div className="flex items-center mr-2.5 cursor-pointer flex-1 justify-center">
+              <Label
+                htmlColor="blue"
+                sx={{ fontSize: "18px", marginRight: "3px" }}
+              />
+              <span className="text-[16px] font-medium">Tag</span>
             </div>
-            <div className="shareOption">
-              <Room htmlColor="green" className="shareOptionIcon" />
-              <span className="shareOptionText">Location</span>
+            <div className="flex items-center mr-2.5 cursor-pointer flex-1 justify-center">
+              <Room
+                htmlColor="green"
+                sx={{ fontSize: "18px", marginRight: "3px" }}
+              />
+              <span className="text-[16px] font-medium">Location</span>
             </div>
-            <div className="shareOption">
+            {/* <div className="flex items-center mr-2.5 cursor-pointer">
               <EmojiEmotions
                 htmlColor="goldenrod"
                 className="shareOptionIcon"
               />
               <span className="shareOptionText">Feeling</span>
-            </div>
+            </div> */}
           </div>
-          <button className="shareButton" type="submit">
+          <button
+            className="w-1/4 border-none rounded-md p-1.5 bg-customPrimary cursor-pointer text-white font-medium"
+            type="submit"
+          >
             Share
           </button>
         </form>

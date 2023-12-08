@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <>
       <TopBar />
-      <div className="homeContainer">
+      <div className="w-full md:flex">
         <Leftbar />
         <Feed />
         <Rightbar />

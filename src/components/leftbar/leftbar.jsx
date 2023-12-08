@@ -15,7 +15,7 @@ import CloseFriends from "../closeFriends/closeFriends";
 
 const Leftbar = () => {
   return (
-    <div className="leftbarContainer">
+    <div className="hidden leftbarContainer md:block">
       <div className="leftbarWrapper">
         <ul className="leftbarList">
           <li className="leftbarListItem">

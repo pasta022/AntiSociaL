@@ -52,7 +52,7 @@ const Rightbar = ({ profile, user }) => {
 
   const HomeRightBar = () => {
     return (
-      <>
+      <div className="hidden md:block">
         <div className="birthdayContainer">
           <img src={PF + "birthday.jpg"} alt="" className="birthdayImg" />
           <span className="birthdayText">
@@ -72,7 +72,7 @@ const Rightbar = ({ profile, user }) => {
             <Online key={u.id} user={u} />
           ))}
         </ul>
-      </>
+      </div>
     );
   };
 

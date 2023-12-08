@@ -25,8 +25,8 @@ const Feed = ({ username, profile }) => {
   }, [user._id, username]);
 
   return (
-    <div className="feedContainer">
-      <div className="feedWrapper">
+    <div className="md:flex-[6] flex-1">
+      <div className="p-5">
         {(!username || username === user.username) && <Share />}
         {posts.map((p) => (
           <Post key={p._id} post={p} profile />
