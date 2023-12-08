@@ -1,5 +1,5 @@
 import "./feed.css";
-import Share from "../share/share";
+import Share from "../share";
 import Post from "../post/post";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";

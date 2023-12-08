@@ -1,13 +1,13 @@
 import {
   Cancel,
-  EmojiEmotions,
+  // EmojiEmotions,
   Label,
   PermMedia,
   Room,
 } from "@mui/icons-material";
 import axios from "axios";
 import { useContext, useRef, useState } from "react";
-import { AuthContext } from "../../context/authContext";
+import { AuthContext } from "../context/authContext";
 // import "./share.css";
 
 const Share = () => {
