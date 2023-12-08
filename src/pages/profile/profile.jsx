@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Feed from "../../components/feed/feed";
 import Leftbar from "../../components/leftbar/leftbar";
 import Rightbar from "../../components/rightbar/rightbar";
-import TopBar from "../../components/topbar/topbar";
+import TopBar from "../../components/topbar";
 import "./profile.css";
 
 const Profile = () => {
