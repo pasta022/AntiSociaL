@@ -1,4 +1,4 @@
-import "./topbar.css";
+// import "./topbar.css";
 import {
   SearchRounded,
   Person,
@@ -20,39 +20,43 @@ const TopBar = () => {
   };
 
   return (
-    <div className="topbarContainer">
-      <div className="topbarLeft">
+    <div className="sticky top-0 z-50 flex items-center justify-between w-full gap-2 h-14 bg-customPrimary md:gap-0 md:justify-normal">
+      <div className="md:grow-[3]">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="topbarLogo">AntiSociaL</span>
+          <span className="ml-2 text-lg font-bold text-white cursor-pointer md:ml-5 md:text-2xl">
+            AntiSociaL
+          </span>
         </Link>
       </div>
-      <div className="topbarCenter">
-        <div className="searchBar">
+      <div className="md:grow-[5] hidden md:block">
+        <div className="flex items-center justify-between w-full h-8 bg-white rounded-xl">
           <input
             type="search"
             placeholder="Search..."
-            className="topbarSearchInput"
+            className="w-10/12 ml-3 focus:outline-none"
           />
-          <SearchRounded className="searchIcon" />
+          <div className="mr-2">
+            <SearchRounded />
+          </div>
         </div>
       </div>
-      <div className="topbarRight">
-        <div className="topbarLinks">
+      <div className="md:grow-[4] flex items-center text-white mr-2 md:mr-5 justify-end">
+        {/* <div className="topbarLinks">
           <span className="topbarLink">Home</span>
           <span className="topbarLink">Timeline</span>
-        </div>
-        <div className="topbarIcons">
-          <div className="topbarIconItems">
+        </div> */}
+        <div className="flex">
+          <div className="relative mr-3 cursor-pointer">
             <Person />
-            <span className="topbarIconBadge">1</span>
+            <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
-          <div className="topbarIconItems">
+          <div className="relative mr-3 cursor-pointer">
             <Chat onClick={handleClick} />
-            <span className="topbarIconBadge">2</span>
+            <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
-          <div className="topbarIconItems">
+          <div className="relative mr-3 cursor-pointer">
             <Notifications />
-            <span className="topbarIconBadge">3</span>
+            <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
         </div>
         <Link to={`/profile/${user.username}`}>
@@ -63,7 +67,7 @@ const TopBar = () => {
                 : PF + "/person/10.png"
             }
             alt=""
-            className="topbarProfilePicture"
+            className="object-cover w-8 h-8 rounded-full cursor-pointer"
           />
         </Link>
       </div>
