@@ -16,6 +16,9 @@ const Share = () => {
   const [file, setFile] = useState(null);
   const desc = useRef();
 
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
   // upload/create post
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,8 +56,8 @@ const Share = () => {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "/person/10.png"
+                ? baseUrl + `/images/${user.profilePicture}`
+                : baseUrl + "/images/Person/10.png"
             }
             alt=""
             className="object-cover w-12 h-12 mr-3 rounded-full"

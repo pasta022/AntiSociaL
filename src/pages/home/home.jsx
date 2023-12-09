@@ -2,7 +2,7 @@ import "./home.css";
 import TopBar from "../../components/topbar";
 import Leftbar from "../../components/leftbar/leftbar";
 import Rightbar from "../../components/rightbar/rightbar";
-import Feed from "../../components/feed/feed";
+import Feed from "../../components/feed";
 
 const Home = () => {
   return (
