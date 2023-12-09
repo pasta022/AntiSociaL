@@ -1,4 +1,4 @@
-import Home from "./pages/home/home";
+import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile/profile";
 import Register from "./pages/register";
@@ -26,11 +26,11 @@ function App() {
         {/* <Route
           path="/messenger"
           element={!user ? <Navigate to="/" /> : <Messenger />}
-        />
+        /> */}
         <Route
           path="/profile/:username"
           element={user ? <Profile /> : <Navigate to="/register" />}
-        /> */}
+        />
       </Routes>
     </Router>
   );
