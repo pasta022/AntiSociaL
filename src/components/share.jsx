@@ -12,7 +12,7 @@ import { AuthContext } from "../context/authContext";
 
 const Share = () => {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [file, setFile] = useState(null);
   const desc = useRef();
 
