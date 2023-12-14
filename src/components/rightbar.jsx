@@ -95,8 +95,7 @@ const Rightbar = ({ profile, user }) => {
   const ProfileRightBar = () => {
     return (
       <>
-        {
-          // user.username !== currentUser.username &&
+        {user.username !== currentUser.username && (
           <div className="flex justify-end w-full md:block">
             <button
               className="md:mt-8 mb-2.5 border-none bg-customPrimary text-white rounded-md px-2.5 py-1.5 flex items-center text-base cursor-pointer font-medium"
@@ -106,7 +105,7 @@ const Rightbar = ({ profile, user }) => {
               {followed ? <Remove /> : <Add />}
             </button>
           </div>
-        }
+        )}
         <h4 className="hidden md:block text-lg font-medium mb-2.5">
           User Information
         </h4>

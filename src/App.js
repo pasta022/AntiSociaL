@@ -11,6 +11,7 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 import Messenger from "./pages/messenger/messenger";
+import Loader from "./components/Loader";
 
 function App() {
   const { user } = useContext(AuthContext);
