@@ -8,6 +8,7 @@ import {
 import axios from "axios";
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../context/authContext";
+import { Link } from "react-router-dom";
 // import "./share.css";
 
 const Share = () => {
@@ -18,6 +19,7 @@ const Share = () => {
 
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  const profileEndpoint = "/profile";
 
   // upload/create post
   const handleSubmit = async (e) => {
@@ -53,15 +55,17 @@ const Share = () => {
     <div className="w-full min-h-[140px] rounded-xl shadow-custom">
       <div className="p-2">
         <div className="flex items-center">
-          <img
-            src={
-              user.profilePicture
-                ? baseUrl + `/images/${user.profilePicture}`
-                : baseUrl + "/images/Person/10.png"
-            }
-            alt=""
-            className="object-cover w-12 h-12 mr-3 rounded-full"
-          />
+          <Link to={`${profileEndpoint}/${user.username}`}>
+            <img
+              src={
+                user.profilePicture
+                  ? baseUrl + `/images/${user.profilePicture}`
+                  : baseUrl + "/images/Person/10.png"
+              }
+              alt=""
+              className="object-cover w-12 h-12 mr-3 rounded-full"
+            />
+          </Link>
           <input
             placeholder={`What are you thinking ${user.username}?`}
             className="w-4/5 h-6 border-none focus:outline-none"
