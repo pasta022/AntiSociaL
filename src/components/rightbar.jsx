@@ -1,4 +1,4 @@
-import { Add, MoreVert, Remove } from "@mui/icons-material";
+import { Add, MoreVert, People, Remove } from "@mui/icons-material";
 import { Users } from "../dummyData";
 import Online from "./online/online";
 // import "./rightbar.css";
@@ -21,7 +21,7 @@ const Rightbar = ({ profile, user }) => {
   // check if user follows profile
   useEffect(() => {
     setFollowed(currentUser.following.includes(user?._id));
-    // console.log(user, currentUser);
+    // console.log(currentUser.followers.length);
   }, [currentUser, user]);
 
   // useEffect(() => {
@@ -109,7 +109,7 @@ const Rightbar = ({ profile, user }) => {
         <h4 className="hidden md:block text-lg font-medium mb-2.5">
           User Information
         </h4>
-        <div className="grid grid-cols-2 mt-2 mb-5 md:block">
+        <div className="grid grid-cols-2 mt-2 mb-1 md:block">
           <div className="col-span-1 mb-5">
             <span className="font-medium text-[#555] mr-2.5">City: </span>
             <span className="font-light">{user.city}</span>
@@ -130,6 +130,30 @@ const Rightbar = ({ profile, user }) => {
                 : "Complicated"}
             </span>
           </div>
+        </div>
+        <div className="flex items-center">
+          <Link
+            to={`/followers/${currentUser._id}`}
+            style={{ textDecoration: "none", cursor: "pointer" }}
+          >
+            <div className="flex items-center">
+              <People className="text-customPrimary" />
+              <span className="ml-2">
+                {currentUser.followers.length} followers
+              </span>
+            </div>
+          </Link>
+          <Link
+            to={`/following/${currentUser._id}`}
+            style={{ textDecoration: "none", cursor: "pointer" }}
+          >
+            <div className="flex items-center ml-4">
+              <People className="text-customPrimary" />
+              <span className="ml-2">
+                {currentUser.following.length} following
+              </span>
+            </div>
+          </Link>
         </div>
         {/* <h4 className="userFriends">User Friends</h4>
         <div className="rightbarFollowings">

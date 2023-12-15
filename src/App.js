@@ -12,11 +12,15 @@ import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 import Messenger from "./pages/messenger/messenger";
 import Loader from "./components/Loader";
+import Follow from "./pages/Follow";
+import ScrollToTop from "./components/ScrollToTop";
+import LazyPage from "./components/LazyPage";
 
 function App() {
   const { user } = useContext(AuthContext);
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route exact path="/" element={user ? <Home /> : <Register />} />
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
@@ -32,6 +36,9 @@ function App() {
           path="/profile/:username"
           element={user ? <Profile /> : <Navigate to="/register" />}
         />
+        <Route path="/followers/:id" element={<Follow />} />
+        <Route path="/following/:id" element={<Follow />} />
+        <Route path="/nocontent" element={<LazyPage />} />
       </Routes>
     </Router>
   );

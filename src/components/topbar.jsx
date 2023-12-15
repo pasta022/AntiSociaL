@@ -19,6 +19,10 @@ const TopBar = () => {
     navigate("/messenger");
   };
 
+  const directToLazyPage = () => {
+    navigate("/nocontent");
+  };
+
   return (
     <div className="sticky top-0 z-50 flex items-center justify-between w-full gap-2 h-14 bg-customPrimary md:gap-0 md:justify-normal">
       <div className="md:grow-[3]">
@@ -47,7 +51,7 @@ const TopBar = () => {
         </div> */}
         <div className="flex">
           <div className="relative mr-3 cursor-pointer">
-            <Person />
+            <Person onClick={directToLazyPage} />
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
           <div className="relative mr-3 cursor-pointer">
@@ -55,7 +59,7 @@ const TopBar = () => {
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
           <div className="relative mr-3 cursor-pointer">
-            <Notifications />
+            <Notifications onClick={directToLazyPage} />
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
         </div>
