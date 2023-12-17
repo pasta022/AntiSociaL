@@ -133,7 +133,7 @@ const Rightbar = ({ profile, user }) => {
         </div>
         <div className="flex items-center">
           <Link
-            to={`/followers/${currentUser._id}`}
+            to={`/followers/${user._id}`}
             style={{ textDecoration: "none", cursor: "pointer" }}
           >
             <div className="flex items-center">
@@ -144,7 +144,7 @@ const Rightbar = ({ profile, user }) => {
             </div>
           </Link>
           <Link
-            to={`/following/${currentUser._id}`}
+            to={`/following/${user._id}`}
             style={{ textDecoration: "none", cursor: "pointer" }}
           >
             <div className="flex items-center ml-4">

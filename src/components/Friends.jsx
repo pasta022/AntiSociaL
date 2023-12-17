@@ -5,7 +5,7 @@ import { Add } from "@mui/icons-material";
 
 const Friends = () => {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const [friends, setFriends] = useState([]);
+  // const [friends, setFriends] = useState([]);
 
   // useEffect(() => {
   //   const getFriends = async () => {
@@ -20,7 +20,7 @@ const Friends = () => {
   // }, [user]);
 
   return (
-    <div className="w-full">
+    <>
       {friends.map((friend) => (
         <div className="flex items-center p-2.5">
           <img
@@ -48,7 +48,7 @@ const Friends = () => {
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

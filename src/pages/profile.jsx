@@ -15,6 +15,7 @@ const Profile = () => {
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
+  // get profile user
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`${baseUrl}/api/users/?username=${username}`);
