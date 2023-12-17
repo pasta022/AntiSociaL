@@ -11,13 +11,13 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
 import Messenger from "./pages/messenger/messenger";
-import Loader from "./components/Loader";
 import Follow from "./pages/Follow";
 import ScrollToTop from "./components/ScrollToTop";
 import LazyPage from "./components/LazyPage";
 
 function App() {
   const { user } = useContext(AuthContext);
+  
   return (
     <Router>
       <ScrollToTop />
