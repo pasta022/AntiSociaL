@@ -62,7 +62,7 @@ const Follow = () => {
               {follows.length > 0 ? (
                 <>
                   {follows.map((friend) => (
-                    <Friends friend={friend} />
+                    <Friends friend={friend} key={friend._id} />
                   ))}
                 </>
               ) : (

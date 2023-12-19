@@ -139,7 +139,7 @@ const Rightbar = ({ profile, user }) => {
             <div className="flex items-center">
               <People className="text-customPrimary" />
               <span className="ml-2">
-                {currentUser.followers.length} followers
+                {user?.followers?.length} followers
               </span>
             </div>
           </Link>
@@ -150,7 +150,7 @@ const Rightbar = ({ profile, user }) => {
             <div className="flex items-center ml-4">
               <People className="text-customPrimary" />
               <span className="ml-2">
-                {currentUser.following.length} following
+                {user?.following?.length} following
               </span>
             </div>
           </Link>
