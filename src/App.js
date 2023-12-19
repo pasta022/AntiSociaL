@@ -17,7 +17,7 @@ import LazyPage from "./components/LazyPage";
 
 function App() {
   const { user } = useContext(AuthContext);
-  
+
   return (
     <Router>
       <ScrollToTop />
