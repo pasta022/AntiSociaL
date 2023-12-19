@@ -3,7 +3,7 @@ import { useState } from "react";
 import ChatOnline from "../../components/chatOnline/chatOnline";
 import Conversation from "../../components/conversation/conversation";
 import Message from "../../components/message/message";
-import TopBar from "../../components/topbar/topbar";
+import TopBar from "../../components/topbar";
 import "./messenger.css";
 import { AuthContext } from "../../context/authContext";
 import axios from "axios";

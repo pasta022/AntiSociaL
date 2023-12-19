@@ -7,6 +7,9 @@ module.exports = {
         customPrimary: "rgb(146, 239, 146)",
         textSecondary: "#f0f2f5",
       },
+      boxShadow: {
+        custom: "0px 0px 18px -8px rgba(0, 0, 0, 0.37)",
+      },
     },
   },
   plugins: [],
