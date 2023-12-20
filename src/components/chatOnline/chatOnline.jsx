@@ -3,19 +3,22 @@ import "./chatOnline.css";
 import axios from "axios";
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
+
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   //get user friends
   useEffect(() => {
     const getFriends = async () => {
-      const res = await axios.get(`/users/following/${currentId}`);
+      const res = await axios.get(baseUrl + `/api/users/following/${currentId}`);
       setFriends(res.data);
     };
 
     getFriends();
-  }, [currentId]);
+  }, [currentId, baseUrl]);
 
   useEffect(() => {
     setOnlineFriends(
@@ -27,7 +30,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `/conversations/find/${currentId}/${user._id}`
+        baseUrl + `/api/conversations/find/${currentId}/${user._id}`
       );
       setCurrentChat(res.data);
     } catch (error) {
@@ -46,8 +49,8 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
             <img
               src={
                 onlineFriend?.profilePicture
-                  ? PF + onlineFriend?.profilePicture
-                  : PF + "/person/10.png"
+                  ? baseUrl + `/images/${onlineFriend?.profilePicture}`
+                  : baseUrl + "/images/Person/10.png"
               }
               alt=""
               className="chatOnlineImg"

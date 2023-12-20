@@ -1,13 +1,16 @@
 import React, { useContext, useState } from "react";
-import { Users as friends } from "../dummyData";
+// import { Users as friends } from "../dummyData";
 import { Link } from "react-router-dom";
 import { Add, Remove } from "@mui/icons-material";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 
 const Friends = ({ friend }) => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const { user: currentUser, dispatch } = useContext(AuthContext)
+
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   const [followed, setFollowed] = useState(
     currentUser.following.includes(friend._id)
@@ -53,8 +56,8 @@ const Friends = ({ friend }) => {
           <img
             src={
               friend.profilePicture
-                ? PF + friend.profilePicture
-                : PF + "person/10.png"
+                ? baseUrl + `/images/${friend.profilePicture}`
+                : baseUrl + "/images/Person/10.png"
             }
             alt=""
             className="object-cover w-16 h-16 rounded-full"

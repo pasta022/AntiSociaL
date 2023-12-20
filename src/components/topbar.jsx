@@ -11,8 +11,11 @@ import { AuthContext } from "../context/authContext";
 
 const TopBar = () => {
   const { user } = useContext(AuthContext);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const navigate = useNavigate();
+
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
 
   //chat icon function
   const handleClick = () => {
@@ -67,8 +70,8 @@ const TopBar = () => {
           <img
             src={
               user.profilePicture
-                ? PF + user.profilePicture
-                : PF + "/person/10.png"
+                ? baseUrl + `/images/${user.profilePicture}`
+                : baseUrl + "/images/Person/10.png"
             }
             alt=""
             className="object-cover w-8 h-8 rounded-full cursor-pointer"

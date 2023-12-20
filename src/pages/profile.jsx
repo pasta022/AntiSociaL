@@ -8,7 +8,7 @@ import TopBar from "../components/topbar";
 // import "./profile.css";
 
 const Profile = () => {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   const { username } = useParams();
 
@@ -35,15 +35,15 @@ const Profile = () => {
             <div className="relative h-80">
               <img
                 className="object-cover w-full h-64"
-                src={user.coverPicture || PF + "person/noCover.jpeg"}
+                src={user.coverPicture ? baseUrl + `/images/${user.coverPicture}` : baseUrl + "/images/Person/noCover.jpeg"}
                 alt=""
               />
               <img
                 className="w-[150px] h-[150px] rounded-full absolute top-44 left-0 right-0 m-auto border-solid border-white border-[3px]"
                 src={
                   user.profilePicture
-                    ? PF + user.profilePicture
-                    : PF + "/person/10.png"
+                    ? baseUrl + `/images/${user.profilePicture}`
+                    : baseUrl + "/images/Person/10.png"
                 }
                 alt=""
               />
