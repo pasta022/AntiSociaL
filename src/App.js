@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/authContext";
-import Messenger from "./pages/messenger/messenger";
+import Messenger from "./pages/messenger";
 import Follow from "./pages/Follow";
 import ScrollToTop from "./components/ScrollToTop";
 import LazyPage from "./components/LazyPage";
