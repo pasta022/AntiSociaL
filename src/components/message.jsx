@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./message.css";
+// import "./message.css";
 import { format } from "timeago.js";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ export default function Message({ message, own, currentchat, currentUser }) {
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
+  // get friend
   useEffect(() => {
     const friendId = currentchat.members.find((m) => m !== currentUser._id);
 
@@ -26,8 +27,8 @@ export default function Message({ message, own, currentchat, currentUser }) {
   }, [currentchat, currentUser._id, baseUrl]);
 
   return (
-    <div className={own ? "message own" : "message"}>
-      <div className="messageTop">
+    <div className={/*own ? "message own" : "message"*/`flex flex-col mt-5 ${own && "items-end"}`}>
+      <div className="flex">
         <img
           src={
             user?.profilePicture
@@ -35,11 +36,11 @@ export default function Message({ message, own, currentchat, currentUser }) {
               : baseUrl + "/images/Person/10.png"
           }
           alt=""
-          className="messageTopImg"
+          className={`h-8 w-8 rounded-full object-cover mr-2.5 ${own && "hidden"}`}
         />
-        <p className="messageTopText">{message.text}</p>
+        <p className={`p-2.5 rounded-[20px] bg-customPrimary text-white max-w-[300px] text-[15px] ${own && "text-black"} ${own && "bg-chatColor"}`}>{message.text}</p>
       </div>
-      <div className="messageBottom">{format(message.createdAt)}</div>
+      <div className="text-xs mt-2.5">{format(message.createdAt)}</div>
     </div>
   );
 }

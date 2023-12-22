@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./conversation.css";
+// import "./conversation.css";
 import axios from "axios";
 
 export default function Conversation({ conversation, currentUser }) {
@@ -9,6 +9,7 @@ export default function Conversation({ conversation, currentUser }) {
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
 
+  // get friend
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id);
 
@@ -25,9 +26,9 @@ export default function Conversation({ conversation, currentUser }) {
   }, [baseUrl, conversation, currentUser._id]);
 
   return (
-    <div className="conversation">
+    <div className="flex items-center cursor-pointer p-2.5 mt-5 hover:bg-hoverColor">
       <img
-        className="conversationImg"
+        className="object-cover w-10 h-10 mr-5 rounded-full"
         src={
           user?.profilePicture
             ? baseUrl + `/images/${user?.profilePicture}`
@@ -35,7 +36,7 @@ export default function Conversation({ conversation, currentUser }) {
         }
         alt=""
       />
-      <span className="conversationName">{user?.username}</span>
+      <span className="font-medium">{user?.username}</span>
     </div>
   );
 }

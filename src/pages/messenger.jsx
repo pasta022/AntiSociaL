@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
-import ChatOnline from "../components/chatOnline/chatOnline";
-import Conversation from "../components/conversation/conversation";
-import Message from "../components/message/message";
+import ChatOnline from "../components/chatOnline";
+import Conversation from "../components/conversation";
+import Message from "../components/message";
 import TopBar from "../components/topbar";
 // import "./messenger.css";
 import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import { io } from "socket.io-client";
+import { ArrowBackIosNew } from "@mui/icons-material";
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -118,14 +119,19 @@ export default function Messenger() {
 
   // show chats when conversation is clicked
   const slideIntoChat = () => {
-    setShowChats(!showChats)
+    setShowChats(true)
+  }
+
+  // go away from chats
+  const slideOutOfChat = () => {
+    setShowChats(false)
   }
 
   return (
     <>
       <TopBar />
       <div style={{ overflow: "hidden" }}>
-        <div className={`flex ${showChats && "-translate-x-full"} transition-transform duration-500`} style={{ height: "calc(100vh - 70px)" }}>
+        <div className={`flex ${showChats ? "-translate-x-full" : "translate-x-0"} transition-transform duration-500`} style={{ height: "calc(100vh - 70px)" }}>
           <div className="md:flex-[3.5] w-full md:w-auto">
             <div className={`w-screen  md:w-auto`}>
               <div className="h-full p-2.5">
@@ -134,13 +140,13 @@ export default function Messenger() {
                   placeholder="Search For Friends"
                   className="px-0 py-2.5 w-[90%] border-b-[1px] border-solid border-t-0 border-x-0 border-[rgb(128,128,128)]"
                 />
-                {conversations.map((c) => (
+                {conversations.map((c, index) => (
                   <div onClick={() => {
                     // eslint-disable-next-line no-unused-expressions
                     !window.matchMedia("(min-width: 768px)").matches ? slideIntoChat() : null
                     setCurrentChat(c)
                   }}>
-                    <Conversation conversation={c} currentUser={user} />
+                    <Conversation conversation={c} currentUser={user} key={index} />
                   </div>
                 ))}
               </div>
@@ -150,6 +156,9 @@ export default function Messenger() {
             <div className={`relative flex flex-col w-screen md:w-auto p-2.5 h-full transition-transform duration-500`}>
               {currentChat ? (
                 <>
+                  <div className="absolute z-20 flex items-center justify-center w-10 h-10 text-white rounded-full bg-customPrimary top-5 md:hidden" onClick={slideOutOfChat}>
+                    <ArrowBackIosNew />
+                  </div>
                   <div className="h-full overflow-y-scroll">
                     {messages.map((m) => (
                       <div ref={scrollRef}>
