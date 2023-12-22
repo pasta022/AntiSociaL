@@ -1,10 +1,10 @@
-import { Add, MoreVert, People, Remove } from "@mui/icons-material";
+import { Add, Email, MoreVert, People, Remove } from "@mui/icons-material";
 import { Users } from "../dummyData";
 import Online from "./online/online";
 // import "./rightbar.css";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 
 const Rightbar = ({ profile, user }) => {
@@ -14,6 +14,7 @@ const Rightbar = ({ profile, user }) => {
   const [followed, setFollowed] = useState(
     currentUser.following.includes(user?._id)
   );
+  const navigate = useNavigate();
 
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
@@ -56,6 +57,21 @@ const Rightbar = ({ profile, user }) => {
     setFollowed(!followed);
   };
 
+  // start a conversation
+  const startConversation = async () => {
+    const members = {
+      senderId: currentUser._id,
+      receiverId: user._id
+    }
+    try {
+      await axios.post(`${baseUrl}/api/conversations/`, members)
+      navigate("/messenger")
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // rightbar for home page
   const HomeRightBar = () => {
     return (
       <div className="hidden md:block">
@@ -92,11 +108,12 @@ const Rightbar = ({ profile, user }) => {
     );
   };
 
+  // rightbar for profile page
   const ProfileRightBar = () => {
     return (
       <>
         {user.username !== currentUser.username && (
-          <div className="flex justify-end w-full md:block">
+          <div className="flex items-center justify-end w-full md:block">
             <button
               className="md:mt-8 mb-2.5 border-none bg-customPrimary text-white rounded-md px-2.5 py-1.5 flex items-center text-base cursor-pointer font-medium"
               onClick={handleClick}
@@ -104,6 +121,9 @@ const Rightbar = ({ profile, user }) => {
               {followed ? "Unfollow" : "Follow"}
               {followed ? <Remove /> : <Add />}
             </button>
+            <div className="flex items-center justify-center ml-3 text-customPrimary md:mt-8 mb-2.5">
+              <Email sx={{ fontSize: "32px" }} onClick={startConversation} />
+            </div>
           </div>
         )}
         <h4 className="hidden md:block text-lg font-medium mb-2.5">

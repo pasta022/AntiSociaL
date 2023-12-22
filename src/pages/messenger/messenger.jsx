@@ -20,6 +20,9 @@ export default function Messenger() {
   const scrollRef = useRef();
   const { user } = useContext(AuthContext);
 
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
   //component hooks
 
   //set socket
@@ -46,20 +49,20 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get(`/conversations/${user?._id}`);
+        const res = await axios.get(baseUrl + `/api/conversations/${user?._id}`);
         setConversations(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     getConversations();
-  }, [user]);
+  }, [baseUrl, user]);
 
   //function to get messages from database
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get(`/messages/${currentChat?._id}`);
+        const res = await axios.get(baseUrl + `/api/messages/${currentChat?._id}`);
         setMessages(res.data);
       } catch (error) {
         console.log(error);
@@ -67,7 +70,7 @@ export default function Messenger() {
     };
 
     getMessages();
-  }, [currentChat]);
+  }, [baseUrl, currentChat]);
 
   //function to send message when send button is clicked
   const sendMessage = async (e) => {
@@ -89,7 +92,7 @@ export default function Messenger() {
     });
 
     try {
-      const res = await axios.post("/messages", message);
+      const res = await axios.post(baseUrl + "/api/messages", message);
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (error) {

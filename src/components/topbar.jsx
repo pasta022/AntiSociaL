@@ -66,11 +66,11 @@ const TopBar = () => {
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
         </div>
-        <Link to={`/profile/${user.username}`}>
+        <Link to={`/profile/${user?.username}`}>
           <img
             src={
-              user.profilePicture
-                ? baseUrl + `/images/${user.profilePicture}`
+              user?.profilePicture
+                ? baseUrl + `/images/${user?.profilePicture}`
                 : baseUrl + "/images/Person/10.png"
             }
             alt=""
