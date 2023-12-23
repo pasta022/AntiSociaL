@@ -40,7 +40,7 @@ export default function Messenger() {
     });
   }, [currentChat]);
 
-  //
+  // set new message
   useEffect(() => {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.senderId) &&
