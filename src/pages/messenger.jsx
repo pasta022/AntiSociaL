@@ -33,7 +33,7 @@ export default function Messenger() {
 
   //set socket
   useEffect(() => {
-    socket.current = io("ws://localhost:8080");
+    socket.current = io(socketUrl);
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         conversationId: currentChat?._id,
