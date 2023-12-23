@@ -131,7 +131,7 @@ export default function Messenger() {
     <>
       <TopBar />
       <div style={{ overflow: "hidden" }}>
-        <div className={`flex ${showChats ? "-translate-x-full" : "translate-x-0"} transition-transform duration-500`} style={{ height: "calc(100vh - 70px)" }}>
+        <div className={`flex ${showChats ? "-translate-x-[100vw]" : "translate-x-0"} transition-transform duration-500 will-change-transform`} style={{ height: "calc(100vh - 70px)" }}>
           <div className="md:flex-[3.5] w-full md:w-auto">
             <div className={`w-screen  md:w-auto`}>
               <div className="h-full p-2.5">
