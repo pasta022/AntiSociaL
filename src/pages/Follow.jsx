@@ -19,7 +19,6 @@ const Follow = () => {
       try {
         setLoading(true);
         const res = await axios.get(baseUrl + `/api/users/following/${id}`);
-        console.log(res.data);
         setFollows(res.data);
         setTimeout(() => {
           setLoading(false);
@@ -34,7 +33,6 @@ const Follow = () => {
       try {
         setLoading(true);
         const res = await axios.get(baseUrl + `/api/users/follower/${id}`);
-        console.log(res.data);
         setFollows(res.data);
         setTimeout(() => {
           setLoading(false);
