@@ -113,7 +113,7 @@ const Rightbar = ({ profile, user }) => {
     return (
       <>
         {user.username !== currentUser.username && (
-          <div className="flex items-center justify-end w-full md:block">
+          <div className="flex items-center justify-end w-full md:justify-normal">
             <button
               className="md:mt-8 mb-2.5 border-none bg-customPrimary text-white rounded-md px-2.5 py-1.5 flex items-center text-base cursor-pointer font-medium"
               onClick={handleClick}

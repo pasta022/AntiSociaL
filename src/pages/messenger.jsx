@@ -24,6 +24,10 @@ export default function Messenger() {
 
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  const socketUrl = "https://antisocialsocket.onrender.com"
+
+  // "ws://localhost:8080"
+
 
   //component hooks
 
@@ -138,15 +142,15 @@ export default function Messenger() {
                 <input
                   type="search"
                   placeholder="Search For Friends"
-                  className="px-0 py-2.5 w-[90%] border-b-[1px] border-solid border-t-0 border-x-0 border-[rgb(128,128,128)]"
+                  className="px-0 py-2.5 w-[90%] border-b-[1px] border-solid border-t-0 border-x-0 border-[rgb(128,128,128)] focus:outline-none"
                 />
                 {conversations.map((c, index) => (
-                  <div onClick={() => {
+                  <div key={index} onClick={() => {
                     // eslint-disable-next-line no-unused-expressions
                     !window.matchMedia("(min-width: 768px)").matches ? slideIntoChat() : null
                     setCurrentChat(c)
                   }}>
-                    <Conversation conversation={c} currentUser={user} key={index} />
+                    <Conversation conversation={c} currentUser={user} />
                   </div>
                 ))}
               </div>
@@ -160,8 +164,8 @@ export default function Messenger() {
                     <ArrowBackIosNew />
                   </div>
                   <div className="h-full overflow-y-scroll">
-                    {messages.map((m) => (
-                      <div ref={scrollRef}>
+                    {messages.map((m, index) => (
+                      <div key={index} ref={scrollRef}>
                         <Message
                           message={m}
                           own={m.senderId === user._id}

@@ -38,7 +38,7 @@ export default function Message({ message, own, currentchat, currentUser }) {
           alt=""
           className={`h-8 w-8 rounded-full object-cover mr-2.5 ${own && "hidden"}`}
         />
-        <p className={`p-2.5 rounded-[20px] bg-customPrimary text-white max-w-[300px] text-[15px] ${own && "text-black"} ${own && "bg-chatColor"}`}>{message.text}</p>
+        <p className={`p-2.5 rounded-[20px]  max-w-[300px] text-[15px] ${own ? "text-black" : "text-white"} ${own ? "bg-chatColor" : "bg-customPrimary "}`}>{message.text}</p>
       </div>
       <div className="text-xs mt-2.5">{format(message.createdAt)}</div>
     </div>
