@@ -31,7 +31,7 @@ export default function Conversation({ conversation, currentUser }) {
         className="object-cover w-10 h-10 mr-5 rounded-full"
         src={
           user?.profilePicture
-            ? baseUrl + `/images/${user?.profilePicture}`
+            ? user?.profilePicture
             : baseUrl + "/images/Person/10.png"
         }
         alt=""

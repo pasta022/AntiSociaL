@@ -52,7 +52,7 @@ const Post = ({ post, profile }) => {
               <img
                 src={
                   user.profilePicture
-                    ? baseUrl + `/images/${user.profilePicture}`
+                    ? user.profilePicture
                     : baseUrl + "/images/Person/10.png"
                 }
                 alt=""

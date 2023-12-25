@@ -60,10 +60,10 @@ const Profile = () => {
                 alt=""
               />
               <img
-                className="w-[150px] h-[150px] rounded-full absolute top-44 left-0 right-0 m-auto border-solid border-white border-[3px]"
+                className="w-[150px] h-[150px] rounded-full absolute top-44 left-0 right-0 m-auto border-solid border-white border-[3px] object-cover"
                 src={
                   user.profilePicture
-                    ? baseUrl + `/images/${user.profilePicture}`
+                    ? user.profilePicture
                     : baseUrl + "/images/Person/10.png"
                 }
                 alt=""

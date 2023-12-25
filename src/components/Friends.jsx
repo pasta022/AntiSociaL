@@ -56,7 +56,7 @@ const Friends = ({ friend }) => {
           <img
             src={
               friend.profilePicture
-                ? baseUrl + `/images/${friend.profilePicture}`
+                ? friend.profilePicture
                 : baseUrl + "/images/Person/10.png"
             }
             alt=""
