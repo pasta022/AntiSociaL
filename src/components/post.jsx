@@ -70,11 +70,11 @@ const Post = ({ post, profile }) => {
         </div>
         <div className="mx-0 my-5">
           <span>{post?.desc}</span>
-          <img
-            src={post.img ? baseUrl + `/images/${post.img}` : ""}
+          {post?.img && <img
+            src={post?.img}
             alt=""
             className="w-full mt-5 object-cover max-h-[500px]"
-          />
+          />}
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">

@@ -14,6 +14,7 @@ import Messenger from "./pages/messenger";
 import Follow from "./pages/Follow";
 import ScrollToTop from "./components/ScrollToTop";
 import LazyPage from "./components/LazyPage";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/followers/:id" element={<Follow />} />
         <Route path="/following/:id" element={<Follow />} />
         <Route path="/nocontent" element={<LazyPage />} />
+        <Route path="/edit/:id" element={<EditProfile />} />
       </Routes>
     </Router>
   );

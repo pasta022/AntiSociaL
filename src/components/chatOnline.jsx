@@ -50,7 +50,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
             <img
               src={
                 onlineFriend?.profilePicture
-                  ? baseUrl + `/images/${onlineFriend?.profilePicture}`
+                  ? onlineFriend?.profilePicture
                   : baseUrl + "/images/Person/10.png"
               }
               alt=""
