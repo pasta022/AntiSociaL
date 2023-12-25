@@ -9,6 +9,7 @@ import { AuthContext } from "../context/authContext";
 import axios from "axios";
 import { io } from "socket.io-client";
 import { ArrowBackIosNew } from "@mui/icons-material";
+import Loader from "../components/Loader";
 
 export default function Messenger() {
   const [conversations, setConversations] = useState([]);
@@ -18,6 +19,7 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [showChats, setShowChats] = useState(false)
+  const [loading, setLoading] = useState(false);
   const socket = useRef();
   const scrollRef = useRef();
   const { user } = useContext(AuthContext);
@@ -55,8 +57,12 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
+        setLoading(true)
         const res = await axios.get(baseUrl + `/api/conversations/${user?._id}`);
         setConversations(res.data);
+        setTimeout(() => {
+          setLoading(false)
+        }, 1500);
       } catch (error) {
         console.log(error);
       }
@@ -144,15 +150,17 @@ export default function Messenger() {
                   placeholder="Search For Friends"
                   className="px-0 py-2.5 w-[90%] border-b-[1px] border-solid border-t-0 border-x-0 border-[rgb(128,128,128)] focus:outline-none"
                 />
-                {conversations.map((c, index) => (
-                  <div key={index} onClick={() => {
-                    // eslint-disable-next-line no-unused-expressions
-                    !window.matchMedia("(min-width: 768px)").matches ? slideIntoChat() : null
-                    setCurrentChat(c)
-                  }}>
-                    <Conversation conversation={c} currentUser={user} />
-                  </div>
-                ))}
+                {loading ? <Loader /> : <>
+                  {conversations.map((c, index) => (
+                    <div key={index} onClick={() => {
+                      // eslint-disable-next-line no-unused-expressions
+                      !window.matchMedia("(min-width: 768px)").matches ? slideIntoChat() : null
+                      setCurrentChat(c)
+                    }}>
+                      <Conversation conversation={c} currentUser={user} />
+                    </div>
+                  ))}
+                </>}
               </div>
             </div>
           </div>

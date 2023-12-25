@@ -6,7 +6,7 @@ import {
   Room,
 } from "@mui/icons-material";
 import axios from "axios";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../context/authContext";
 import { Link } from "react-router-dom";
 // import "./share.css";
@@ -16,36 +16,73 @@ const Share = () => {
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [file, setFile] = useState(null);
   const desc = useRef();
+  const presetKey = process.env.REACT_APP_PRESET_KEY
+  const cloudName = process.env.REACT_APP_CLOUD_NAME
 
   // api endpoint
   const baseUrl = process.env.REACT_APP_BASE_URL;
   const profileEndpoint = "/profile";
 
+  // convert file to base64
+  // const handleFile = (e) => {
+  //   const uploadFile = e.target.files[0]
+  //   convertToBase(uploadFile)
+  // }
+
+  // const convertToBase = (file) => {
+  //   const reader = new FileReader()
+  //   reader.readAsDataURL(file)
+  //   reader.onloadend = () => {
+  //     setFile(reader.result)
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   console.log(file);
+  // }, [file])
+
   // upload/create post
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // create new post object
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
     };
+    const formData = new FormData()
+
+    // upload image to cloudinary
     if (file) {
-      const data = new FormData();
-      data.append("file", file);
+
+      formData.append("file", file);
+      formData.append("upload_preset", presetKey)
+      formData.append("folder", "Posts")
       try {
-        const res = await axios.post("/upload", data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        newPost.img = res.data.fileName;
+        const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData)
+        newPost.img = res.data.secure_url
       } catch (error) {
         console.log(error);
       }
     }
 
+    // if (file) {
+    //   const data = new FormData();
+    //   data.append("file", file);
+    //   try {
+    //     const res = await axios.post("/upload", data, {
+    //       headers: {
+    //         "Content-Type": "multipart/form-data",
+    //       },
+    //     });
+    //     newPost.img = res.data.fileName;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // }
+
     try {
-      await axios.post("/posts/", newPost);
-      window.location.reload();
+      await axios.post(baseUrl + "/api/posts/", newPost);
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -107,9 +144,7 @@ const Share = () => {
                 type="file"
                 id="file"
                 accept=".png, .jpeg, .jpg"
-                onChange={(e) => {
-                  setFile(e.target.files[0]);
-                }}
+                onChange={(e) => { setFile(e.target.files[0]) }}
               />
             </label>
             <div className="flex items-center mr-2.5 cursor-pointer flex-1 justify-center">
