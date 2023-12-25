@@ -4,13 +4,14 @@ import {
   Person,
   Chat,
   Notifications,
+  Logout,
 } from "@mui/icons-material";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/authContext";
 
 const TopBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const navigate = useNavigate();
 
@@ -25,6 +26,10 @@ const TopBar = () => {
   const directToLazyPage = () => {
     navigate("/nocontent");
   };
+
+  const handleLogout = () => {
+    logout()
+  }
 
   return (
     <div className="sticky top-0 z-50 flex items-center justify-between w-full gap-2 h-14 bg-customPrimary md:gap-0 md:justify-normal">
@@ -61,10 +66,10 @@ const TopBar = () => {
             <Chat onClick={handleClick} />
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
           </div>
-          <div className="relative mr-3 cursor-pointer">
+          {/* <div className="relative mr-3 cursor-pointer">
             <Notifications onClick={directToLazyPage} />
             <span className="w-3 h-3 bg-red-700 rounded-full absolute top-[-3px] right-[-2px]"></span>
-          </div>
+          </div> */}
         </div>
         <Link to={`/profile/${user?.username}`}>
           <img
@@ -77,6 +82,9 @@ const TopBar = () => {
             className="object-cover w-8 h-8 rounded-full cursor-pointer"
           />
         </Link>
+        <div className="flex items-center justify-center ml-2">
+          <Logout onClick={handleLogout} />
+        </div>
       </div>
     </div>
   );
