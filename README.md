@@ -23,13 +23,9 @@ to use the app, you'd need the AntisociaL-api and Antisocial-socket applications
 
 there are a few bugs/limitations on this project. they include:-
 
-- project is not responsive
-- follow button on a user profile not functioning as it should
+- no page to view all users in order to add them as friends
 - search feature not enabled
-- error handling
-- pictures are uploaded locally to the api and not a database
-- edit profile feature not included
-- logs user out after every refresh(context api issue??)
+- error handling is only limited to certain pages
 
 ## Contributing
 
