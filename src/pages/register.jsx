@@ -12,6 +12,7 @@ const Register = () => {
   const passwordAgain = useRef();
   const [showDiv, setShowDiv] = useState(false);
   const [fetching, setFetching] = useState(false);
+  const [error, setError] = useState(false)
   const navigate = useNavigate();
 
   // api endpoints
@@ -41,6 +42,7 @@ const Register = () => {
         navigate("/login");
       } catch (error) {
         console.log(error);
+        setError(true);
         setFetching(false);
       }
     }
@@ -67,13 +69,16 @@ const Register = () => {
           onSubmit={handleClick}
         >
           <div className="flex flex-col justify-between w-full h-96">
-            <input
-              type="text"
-              className="h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
-              placeholder="Username"
-              ref={username}
-              required
-            />
+            <div className="w-full">
+              <input
+                type="text"
+                className="w-full h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
+                placeholder="Username"
+                ref={username}
+                required
+              />
+              {error && <p className="block mt-1 mb-0 text-sm text-center text-red-600">Username/Email already exists. Try another name</p>}
+            </div>
             <input
               type="email"
               className="h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"

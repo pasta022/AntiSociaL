@@ -1,4 +1,4 @@
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 // import "./login.css";
 import { loginCall } from "../apiCalls";
 import { AuthContext } from "../context/authContext";
@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const email = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch, error } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState(false);
 
   //validate user
   const handleSubmit = (e) => {
@@ -22,6 +23,13 @@ const Login = () => {
       dispatch
     );
   };
+
+  useEffect(() => {
+    setErrorMessage(error.response?.data);
+    setTimeout(() => {
+      setErrorMessage(false)
+    }, 3000);
+  }, [error])
 
   //register button fuction
   const handleRegister = () => {
@@ -46,19 +54,22 @@ const Login = () => {
           <div className="flex flex-col justify-between w-full h-72">
             <input
               type="email"
-              className="h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
+              className="w-full h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
               placeholder="username@email.com"
               ref={email}
               required
             />
-            <input
-              type="password"
-              className="h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
-              placeholder="Password"
-              minLength={8}
-              ref={password}
-              required
-            />
+            <div>
+              <input
+                type="password"
+                className="w-full h-12 pl-5 text-lg border-2 border-gray-300 border-solid rounded-xl focus:outline-none"
+                placeholder="Password"
+                minLength={8}
+                ref={password}
+                required
+              />
+              {errorMessage && <p className="block mt-1 mb-0 text-sm text-center text-red-600">{errorMessage}</p>}
+            </div>
             <button
               className="h-12 text-lg font-medium border-none rounded-lg cursor-pointer bg-customPrimary text-textSecondary disabled:cursor-not-allowed"
               type="submit"
