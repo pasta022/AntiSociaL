@@ -38,7 +38,7 @@ const Post = ({ post, profile }) => {
       axios.put(`${baseUrl}/api/posts/${post._id}/like`, {
         userId: currentUser._id,
       });
-    } catch (error) {}
+    } catch (error) { }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -52,7 +52,7 @@ const Post = ({ post, profile }) => {
               <img
                 src={
                   user.profilePicture
-                    ? baseUrl + `/images/${user.profilePicture}`
+                    ? user.profilePicture
                     : baseUrl + "/images/Person/10.png"
                 }
                 alt=""
@@ -70,11 +70,11 @@ const Post = ({ post, profile }) => {
         </div>
         <div className="mx-0 my-5">
           <span>{post?.desc}</span>
-          <img
-            src={baseUrl + `/images/${post.img}`}
+          {post?.img && <img
+            src={post?.img}
             alt=""
             className="w-full mt-5 object-cover max-h-[500px]"
-          />
+          />}
         </div>
         <div className="flex items-center justify-between">
           <div className="flex items-center">

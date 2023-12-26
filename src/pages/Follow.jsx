@@ -10,13 +10,15 @@ const Follow = () => {
   const [follows, setFollows] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // api endpoint
+  const baseUrl = process.env.REACT_APP_BASE_URL;
+
   useEffect(() => {
     // get following
     const getFollowing = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`/users/following/${id}`);
-        console.log(res.data);
+        const res = await axios.get(baseUrl + `/api/users/following/${id}`);
         setFollows(res.data);
         setTimeout(() => {
           setLoading(false);
@@ -30,8 +32,7 @@ const Follow = () => {
     const getFollowers = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`/users/follower/${id}`);
-        console.log(res.data);
+        const res = await axios.get(baseUrl + `/api/users/follower/${id}`);
         setFollows(res.data);
         setTimeout(() => {
           setLoading(false);
@@ -43,7 +44,7 @@ const Follow = () => {
     window.location.pathname.includes("following")
       ? getFollowing()
       : getFollowers();
-  }, [id]);
+  }, [baseUrl, id]);
 
   return (
     <>

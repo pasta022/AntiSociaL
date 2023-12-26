@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // logout function
   const logout = () => {
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
     dispatch({ type: "LOGOUT" });
   };
   return (
